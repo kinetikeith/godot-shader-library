@@ -21,8 +21,10 @@ vec3 traverse_voxels(vec3 origin, vec3 direction) {
 	for(int i = 0; i < steps; i++) {
 		vec3 current_voxel_loc = vec3(current_voxel) * voxel_size;
 		
+		// BEGIN hit test
 		bool is_filled = hash(current_voxel_loc).x < 0.5;
 		if(is_filled) return hash(current_voxel_loc + 0.5);
+		// END hit test
 		
 		vec3 next = (vec3(current_voxel) + (sign(direction) * 0.5 + 0.5)) * voxel_size;
 		vec3 a = (next - current) * delta_t;
